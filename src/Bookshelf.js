@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Book from './Book'
 
 
@@ -15,26 +15,4 @@ function Bookshelf (props) {
     )
 }
 
-/*
-class Bookshelf extends Component {
-    state = {
-        books : []
-    }
-    
-    render(){
-        return (
-        <div className="bookshelf">
-        <h2 className="bookshelf-title">Currently Reading</h2>
-        <div className="bookshelf-books">
-        <ol className="books-grid">
-        <li>
-        
-        </li>
-        </ol>
-        </div>
-        </div>
-        )
-    }
-}
-*/
 export default Bookshelf
