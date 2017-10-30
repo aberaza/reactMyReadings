@@ -8,7 +8,7 @@ function Bookshelf (props) {
             <h2 className="bookshelf-title">{props.name}</h2>
             <div className="bookshelf-books">
                 <ol className="books-grid">
-                    {props.books.map(book => (<li key={book.authors+book.title}><Book data={book}/></li>))}
+                    {props.books.map(book => (<li key={book.authors+book.title}><Book data={book} onUpdateBookStatus={props.onUpdateBookStatus} /></li>))}
                 </ol>
             </div>
         </div>

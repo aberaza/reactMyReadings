@@ -1,7 +1,14 @@
 import React from 'react'
 
 class Book extends React.Component {
-    
+
+    handleSelect= (e)=>{
+        console.log(e.target.value);
+        let book = this.props.data;
+        book.status = e.target.value;
+        this.props.onUpdateBookStatus(book);
+    }
+
     render() {
         const {title, authors, cover, status} = this.props.data;
 
@@ -10,7 +17,7 @@ class Book extends React.Component {
                 <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: cover }}></div>
                             <div className="book-shelf-changer">
-                              <select value={status}>
+                              <select value={status} onChange={this.handleSelect}>
                                 <option value="none" disabled>Move to...</option>
                                 <option value="reading">Currently Reading</option>
                                 <option value="wishlist">Want to Read</option>
