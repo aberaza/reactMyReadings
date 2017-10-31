@@ -36,6 +36,15 @@ class SearchBooks extends Component {
             , 150);
     } 
 
+    updateBookShelf = (book, shelf) => {
+        this.props.onUpdateBookStatus(book, shelf);
+
+        this.setState( ({results}) => {
+            results.find(b=>b.id===book.id).shelf = shelf;
+            return { results }
+        })
+    }
+
     clearQuery = _ => this.setState({results:[]})
 
     render(){
@@ -61,7 +70,7 @@ class SearchBooks extends Component {
             </div>
             <div className="search-books-results">
                 <ol className="books-grid">
-                    { this.state.results.map( b => (<li key={b.authors+b.title}><Book book={b} onUpdateBookStatus={this.props.onUpdateBookStatus} /></li>)) }
+                    { this.state.results.map( b => (<li key={b.authors+b.title}><Book book={b} onUpdateBookStatus={this.updateBookShelf} /></li>)) }
                 </ol>
             </div>
         </div>
