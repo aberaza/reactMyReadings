@@ -22,14 +22,17 @@ class BooksApp extends React.Component {
       .then(booksList => this.setState({booksList}));
   }
 
-  addBook(book){
-
+  searchBooks = (query, maxResults=20) => {
+    return BooksAPI.search(query, maxResults)
+      .then(books => books.map(book => (this.state.booksList.find(b=> b.id === book.id)|| book )));
   }
 
   render() {
     return (
       <div className="app">
-        <Route path="/search" component={SearchBooks} onUpdateBookStatus={this.updateBookStatus} />
+        <Route path="/search" render={() => (
+          <SearchBooks onUpdateBookStatus={this.updateBookStatus} onSearchBooks={this.searchBooks}/>
+        )}/> 
         <Route exact path="/" render={()=> (
           <BooksList books={this.state.booksList} onUpdateBookStatus={this.updateBookStatus} />
           )} />

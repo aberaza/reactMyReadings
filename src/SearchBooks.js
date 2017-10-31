@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import Book from './Book'
-import * as BooksAPI from './BooksAPI'
+//import * as BooksAPI from './BooksAPI'
 
 class SearchBooks extends Component {
+    static propTypes = {
+        onUpdateBookStatus : PropTypes.func.isRequired,
+        onSearchBooks : PropTypes.func.isRequired
+    }
+
     state = {
-        query : '',
+       // query : '',
         results : []
     }
 
@@ -17,18 +23,20 @@ class SearchBooks extends Component {
         (this.searchTimer && clearTimeout(this.searchTimer))
 
         if(query === ''){
-            this.setState({query:'', results:[]});
+           // this.setState({query:'', results:[]});
+            this.setState({results:[]});
             return;
         }
 
         this.searchTimer = setTimeout(
-            _=> BooksAPI.search(query.trim(), 20)
+            _=> this.props.onSearchBooks(query.trim(), 20)
             .then((results) => {console.dir(results); return results;})
-            .then((results)=>this.setState({query:query.trim(), results}))
+            //.then((results)=>this.setState({query:query.trim(), results}))
+            .then((results)=>this.setState({results}))
             , 150);
     } 
 
-    clearQuery = _ => this.setState({query:'', results:[]})
+    clearQuery = _ => this.setState({results:[]})
 
     render(){
         return (
@@ -53,7 +61,7 @@ class SearchBooks extends Component {
             </div>
             <div className="search-books-results">
                 <ol className="books-grid">
-                    { this.state.results.map( b => (<li key={b.authors+b.title}><Book data={b} onUpdateBookStatus={this.props.onUpdateBookStatus} /></li>)) }
+                    { this.state.results.map( b => (<li key={b.authors+b.title}><Book book={b} onUpdateBookStatus={this.props.onUpdateBookStatus} /></li>)) }
                 </ol>
             </div>
         </div>
