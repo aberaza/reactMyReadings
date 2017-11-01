@@ -1,6 +1,6 @@
 {
   "name": "my-readings",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Simple tool to keep track of your readings (current, past and future).",
   "private": true,
   "repository": {
