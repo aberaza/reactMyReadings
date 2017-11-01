@@ -12,7 +12,6 @@ class SearchBooks extends Component {
     }
 
     state = {
-       // query : '',
         results : []
     }
 
@@ -23,17 +22,17 @@ class SearchBooks extends Component {
         (this.searchTimer && clearTimeout(this.searchTimer))
 
         if(query === ''){
-           // this.setState({query:'', results:[]});
             this.setState({results:[]});
             return;
         }
 
+/* To prevent flooding with wueries while typing the search, launch search only after
+250ms of the last keypress */
         this.searchTimer = setTimeout(
-            _=> this.props.onSearchBooks(query.trim(), 20)
-            .then((results) => {console.dir(results); return results;})
-            //.then((results)=>this.setState({query:query.trim(), results}))
-            .then((results)=>this.setState({results}))
-            , 150);
+            _ => this.props.onSearchBooks(query.trim(), 30)
+                .then( results => this.setState( {results} ) )
+                .catch(console.warn)
+        , 250);
     } 
 
     updateBookShelf = (book, shelf) => {
@@ -54,14 +53,6 @@ class SearchBooks extends Component {
         
                 <Link className="close-search" to="/">Close</Link>
                 <div className="search-books-input-wrapper">
-        {/*
-            NOTES: The search from BooksAPI is limited to a particular set of search terms.
-            You can find these search terms here:
-            https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-            
-            However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-            you don't find a specific author or title. Every search is limited by search terms.
-        */}
                     <input type="text" 
                         placeholder="Search by title or author"
                         onChange={e => this.updateQuery(e.target.value)}/>

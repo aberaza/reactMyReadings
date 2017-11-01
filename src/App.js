@@ -16,16 +16,13 @@ class BooksApp extends React.Component {
       .then(booksList => this.setState({booksList}));
   }
 
-  updateBookStatus = (book, shelf)=> {
-    BooksAPI.update(book,shelf)
+  updateBookStatus = (book, shelf)=> BooksAPI.update(book,shelf)
       .then(BooksAPI.getAll)
       .then(booksList => this.setState({booksList}));
-  }
 
-  searchBooks = (query, maxResults=20) => {
-    return BooksAPI.search(query, maxResults)
-      .then(books => books.map(book => (this.state.booksList.find(b=> b.id === book.id)|| book )));
-  }
+  searchBooks = (query, maxResults=20) => BooksAPI.search(query, maxResults)
+      .then(books => books.map(book => this.state.booksList.find(b=> b.id === book.id) || book))
+      .catch(err => { console.warn(err); return [];});
 
   render() {
     return (
