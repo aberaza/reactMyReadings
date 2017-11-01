@@ -11,7 +11,7 @@ You have two options to install and run:
 ### Install with npm/yarn
 
 From your command line run
-```bashscript
+```bash
 git clone https://github.com/aberaza/reactMyReadings.git
 cd reactMyReadings
 npm install
@@ -19,10 +19,10 @@ npm install
 This will download the sources to the folder ```reactMyReadings/``` and then _cd_ into it to finish installing dependencies using npm. If you prefer *yarn* to manage dependencies change that last command and use ```yarn install``` instead.
 
 Once this is finished to launch the app you can run:
-```bashscript
-npm run
+```bash
+npm start
 #or
-yarn run
+yarn start
 ```
 
 This will start a server and launch your default browser pointing to URL ```localhost:3000```. In case no browser is opened. You can start one and write that URL in the browsers address box.
@@ -32,7 +32,7 @@ This will start a server and launch your default browser pointing to URL ```loca
 Simply download [myReads.zip](myReads.zip) file to your computer and unzip it's contents into a folder.
 
 To launch the app serve it with a web-server and point your browser to the correct URL where the app is accesible. Or if you have no webserver installed run:
-```bashscript
+```bash
 # Install serve if not already installed on your computer
 npm install -g serve
 
