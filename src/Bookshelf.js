@@ -2,13 +2,13 @@ import React from 'react'
 import Book from './Book'
 import PropTypes from 'prop-types'
 
-function Bookshelf (props) {
+function Bookshelf ({name, books, onUpdateBookStatus}) {
     return (
         <div className="bookshelf">
-            <h2 className="bookshelf-title">{props.name}</h2>
+            <h2 className="bookshelf-title">{name}</h2>
             <div className="bookshelf-books">
                 <ol className="books-grid">
-                    {props.books.map(book => (<li key={book.id}><Book book={book} onUpdateBookStatus={props.onUpdateBookStatus} /></li>))}
+                    {books.map(book => (<li key={book.id}><Book book={book} onUpdateBookStatus={onUpdateBookStatus} /></li>))}
                 </ol>
             </div>
         </div>
@@ -16,6 +16,7 @@ function Bookshelf (props) {
 }
 
 Bookshelf.propTypes = {
+    name: PropTypes.string.isRequired,
     books : PropTypes.array.isRequired,
     onUpdateBookStatus : PropTypes.func.isRequired
 }

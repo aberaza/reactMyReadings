@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Book (props) {
-    const {title, authors, imageLinks, shelf} = props.book;
+function Book ({book, onUpdateBookStatus}) {
+    const {title, authors, imageLinks, shelf} = book;
     const thumbnail = `url(${imageLinks.thumbnail || imageLinks.smallThumbnail})`;
         
     return (
@@ -10,7 +10,7 @@ function Book (props) {
             <div className="book-top">
                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: thumbnail }}></div>
                 <div className={`book-shelf-changer shelf-${shelf||'none'}`}>
-                    <select value={shelf||"none"} onChange={e => props.onUpdateBookStatus(props.book, e.target.value)}>
+                    <select value={shelf||"none"} onChange={e => onUpdateBookStatus(book, e.target.value)}>
                         <option value="none" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>

@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 
 import Bookshelf from './Bookshelf';
 
-function BooksList(props) {
-    const {books, onUpdateBookStatus} = props;
+function BooksList({books, onUpdateBookStatus}) {
     return ( 
         <div className="list-books">
             <div className="list-books-title">
